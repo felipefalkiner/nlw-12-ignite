@@ -1,7 +1,3 @@
 export default function Home() {
-  return (
-    <div>
-      oi
-    </div>
-  )
+  return <div className="text-2xl font-bold ">oi</div>
 }

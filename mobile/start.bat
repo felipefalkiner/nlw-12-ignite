@@ -1,1 +1,1 @@
-npx expo start --port 19001 
+npx expo start --port 19001 --clear

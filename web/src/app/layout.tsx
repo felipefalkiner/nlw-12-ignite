@@ -13,14 +13,17 @@ const baiJamjuree = BaiJamjuree({
 })
 
 export const metadata = {
-  title: 'NLW Spaceship',
-  description: 'NLW Edição 12',
+  title: 'NLW Spacetime - Edição 12',
+  description:
+    'Uma cápsula do tempo, construída com React, Next.js, TailwindCSS e TypeScript.',
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${roboto.variable} ${baiJamjuree.variable} font-sans`}>
+      <body
+        className={`${roboto.variable} ${baiJamjuree.variable} bg-gray-900 font-sans text-gray-100`}
+      >
         {children}
       </body>
     </html>

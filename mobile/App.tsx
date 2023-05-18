@@ -1,8 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { Text, View } from 'react-native';
+import { ImageBackground, Text, View } from 'react-native';
 
 import {useFonts, Roboto_400Regular, Roboto_700Bold} from '@expo-google-fonts/roboto'
 import {BaiJamjuree_700Bold} from '@expo-google-fonts/bai-jamjuree'
+
+import blurBg from './src/assets/bg-blur.png';
 
 export default function App() {
   const [hasLoadedFonts] = useFonts({
@@ -16,9 +18,8 @@ export default function App() {
   }
 
   return (
-    <View className='bg-gray-900 h-20 flex-1 items-center justify-center'>
-      <Text className='text-gray-50 font-title text-5xl text-center'>We have Tailwind!</Text>
+    <ImageBackground source={blurBg} className='bg-gray-900 flex-1 relative' imageStyle={{position: 'absolute', left: '-100%'}}>
       <StatusBar style="light" translucent/>
-    </View>
+    </ImageBackground>
   );
 }

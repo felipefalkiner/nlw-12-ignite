@@ -41,6 +41,9 @@ export async function authRoutes(app: FastifyInstance) {
       avatar_url: z.string().url(),
     })
 
+    if (userReponse.data.name == null)
+      userReponse.data.name = userReponse.data.login
+
     const userInfo = userSchema.parse(userReponse.data)
 
     let user = await prisma.user.findUnique({

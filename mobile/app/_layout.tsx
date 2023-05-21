@@ -1,5 +1,6 @@
 import { styled } from "nativewind";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import * as SecureStore from 'expo-secure-store'
 import { ImageBackground } from "react-native";
 import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto'
 import { BaiJamjuree_700Bold } from '@expo-google-fonts/bai-jamjuree'
@@ -15,11 +16,19 @@ const StyledStripes = styled(Stripes);
 
 export default function Layout() {
 
+    const [isUserAuthenticated, setIsUserAuthenticate] = useState<null | boolean>(null)
+
+
+
     const [hasLoadedFonts] = useFonts({
         Roboto_400Regular,
         Roboto_700Bold,
         BaiJamjuree_700Bold
       })
+
+      useEffect(() => {SecureStore.getItemAsync('token').then(token => {
+        setIsUserAuthenticate(!!token)
+      })}, [])
     
       if (!hasLoadedFonts) {
         return <SplashScreen />
@@ -34,7 +43,10 @@ export default function Layout() {
         <StyledStripes className='absolute left-2' />
         <StatusBar style="light" translucent />
 
-        <Stack screenOptions={{headerShown:false, contentStyle: {backgroundColor: 'transparent'}}} />
+        <Stack screenOptions={{headerShown:false, contentStyle: {backgroundColor: 'transparent'}}} >
+            <Stack.Screen name='index' redirect={isUserAuthenticated} />
+            <Stack.Screen name='memories' />
+        </Stack>
       </ImageBackground>
     )
 }
